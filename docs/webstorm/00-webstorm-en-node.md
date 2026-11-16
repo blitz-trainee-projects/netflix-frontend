@@ -25,7 +25,7 @@ In deze handleiding installeer je wat je nodig hebt, zet je de repo op je laptop
 ## Stap 2: WebStorm installeren
 
 1. Download WebStorm via [jetbrains.com/webstorm/download](https://www.jetbrains.com/webstorm/download/) en installeer het met de standaardinstellingen.
-2. Log in met de licentie die je van je trainer krijgt.
+2. Start WebStorm. Vraagt het om een licentie, kies dan **Non-commercial use** en log in met een gratis JetBrains-account.
 
 ---
 
