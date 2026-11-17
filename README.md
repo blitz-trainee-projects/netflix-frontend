@@ -53,3 +53,7 @@ Je hebt geen terminal nodig. Alles gaat via WebStorm.
 5. Stoppen doe je met het rode vierkantje in het venster **Run**.
 
 Meer uitleg staat in de [handleiding WebStorm en Node.js](docs/webstorm/00-webstorm-en-node.md).
+
+## Mijn fouten en oplossingen
+
+De backend en frontend hebben niet dezelfde origin. Door in de backend aan te geven dat je ook vanaf de origin van de frontend mag communiceren, wordt dit probleem opgelost.
