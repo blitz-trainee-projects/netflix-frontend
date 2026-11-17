@@ -1,10 +1,15 @@
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 import { MovieCard } from './MovieCard'
 //import { fetchMovies } from '../api/movieApi'
 
 import type { Movie } from '../types/movie'
 
-export function MovieList(mockMovies: Movie[]) {
+// Altijd EEN props-object doorgeven aan een component
+interface MovieListProps {
+    movies: Movie[]
+}
+
+export function MovieList({movies: mockMovies}: MovieListProps) {
     // State: gegevens die kunnen veranderen. Verandert state, dan tekent React het component opnieuw.
     const [movies, setMovies] = useState<Movie[]>([])
     const [loading, setLoading] = useState(true)
