@@ -1,6 +1,6 @@
 import { PlanList } from './components/PlanList'
-import { MovieList } from './components/MovieList'
-import { mockMovies } from './data/mockMovies'
+//import { MovieList } from './components/MovieList'
+//import { mockMovies } from './data/mockMovies'
 import {MoviesPage} from './components/MoviePage'
 
 function App() {
