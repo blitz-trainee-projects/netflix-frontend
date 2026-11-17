@@ -1,6 +1,7 @@
 import { PlanList } from './components/PlanList'
 import { MovieList } from './components/MovieList'
 import { mockMovies } from './data/mockMovies'
+import {MoviesPage} from './components/MoviePage'
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       {/* Hier komen vanaf laag 1 je films. */}
       <section className="section">
         <h2 className="section-title">Films</h2>
-        <MovieList movies={mockMovies} />
+          {/* <MovieList movies={mockMovies} /> */}
+          <MoviesPage />
       </section>
     </main>
   )
