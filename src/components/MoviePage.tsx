@@ -1,10 +1,15 @@
 import { MovieList } from './MovieList.tsx'
 import { mockMovies } from '../data/mockMovies'
 import { useState } from 'react'
+import { MovieDetail } from './MovieDetail'
+import type { Movie } from '../types/movie'
 
 export function MoviesPage() {
     // State voor de zoektekst
     const [search, setSearch] = useState('')
+
+    // Geselecteerde film bijhouden
+    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null)
 
     // Filter films op basis van de titel
     const filteredMovies = mockMovies.filter((movie) =>
@@ -28,7 +33,15 @@ export function MoviesPage() {
                 />
 
                 {/* Gefilterde films doorgeven */}
-                <MovieList movies={filteredMovies} />
+                <MovieList
+                    movies={filteredMovies}
+                    selectedMovie={selectedMovie}
+                    onSelect={setSelectedMovie}
+                />
+                {selectedMovie && (     //wat hier precies mee bedoeld?
+                    <MovieDetail movie={selectedMovie} />
+                )}
+
             </section>
         </main>
     )
