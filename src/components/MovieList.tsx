@@ -1,8 +1,7 @@
 import {useEffect, useState} from 'react'
 import { MovieCard } from './MovieCard'
-//import { fetchMovies } from '../api/movieApi'
-
 import type { Movie } from '../types/movie'
+//import { fetchMovies } from '../api/movieApi'
 
 // Altijd EEN props-object doorgeven aan een component
 interface MovieListProps {
@@ -30,7 +29,7 @@ export function MovieList({movies: mockMovies}: MovieListProps) {
         }
 
         loadMovies()
-    }, [])
+    },) //was eerst },[]
 
     if (loading) {
         return <p className="message">Films laden...</p>
