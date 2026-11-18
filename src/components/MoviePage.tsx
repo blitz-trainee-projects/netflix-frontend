@@ -23,7 +23,7 @@ export function MoviesPage() {
                 const data = await fetchMovies()
                 setMovies(data)
             } catch {
-                setError('Kon de films niet ophalen. Draait de backend?.')
+                setError('Kon de films niet ophalen. Draait de backend?')
             } finally {
                 setLoading(false)
             }
