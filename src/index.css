@@ -194,3 +194,8 @@ body {
 .message-error {
   color: var(--error);
 }
+
+/* Nieuw */
+.card-selected {
+  border: 2px solid red;
+}
