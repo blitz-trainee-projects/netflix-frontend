@@ -8,11 +8,10 @@ interface MovieCardProps {
 }
 
 // Een component is een functie die HTML (JSX) teruggeeft. De naam begint met een hoofdletter.
-export function MovieCard({
-                              movie,
-                              isSelected,
-                              onSelect
-                          }: MovieCardProps) {
+export function MovieCard({movie,
+                           isSelected,
+                           onSelect
+                        }: MovieCardProps) {
   return (
     <article
       className={`card ${isSelected ? 'card-selected' : ''}`}

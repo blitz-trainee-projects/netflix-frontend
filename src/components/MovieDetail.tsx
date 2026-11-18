@@ -9,9 +9,7 @@ export function MovieDetail({ movie }: MovieDetailProps) {
         <div className="detail">
             <h2>{movie.title}</h2>
 
-            <p>
-                Beschrijving: {movie.description ?? 'Geen beschrijving beschikbaar'}
-            </p>
+            <p> Beschrijving: {movie.description ?? 'Geen beschrijving beschikbaar'}</p>
 
             <p>Releasejaar: {movie.release_year}</p>
 

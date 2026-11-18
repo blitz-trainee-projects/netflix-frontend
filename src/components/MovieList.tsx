@@ -20,7 +20,7 @@ export function MovieList({
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
-    // Geselecteerde film
+    // Geselecteerde film // Vind eigenlijk logischer hier -> vraag waarom opdracht het niet wil
     // const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null)
 
     // useEffect met een lege lijst [] draait één keer, nadat het component op het scherm staat.
@@ -38,7 +38,7 @@ export function MovieList({
         }
 
         loadMovies()
-    }, [initialMovies])     //was eerst },[]  // [initialMovies] beetje raar wat het doet HIER
+    }, [initialMovies])     //was eerst },[]  // [initialMovies] beetje raar, wat is het HIER
 
     if (loading) {
         return <p className="message">Films laden...</p>
