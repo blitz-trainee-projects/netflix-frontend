@@ -1,20 +1,42 @@
 import { MovieList } from './MovieList.tsx'
-import { mockMovies } from '../data/mockMovies'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { MovieDetail } from './MovieDetail'
 import type { Movie } from '../types/movie'
+import { fetchMovies } from "../api/movieAPI.ts";
+
+//import { MovieCard } from "./MovieCard.tsx";
 
 export function MoviesPage() {
-    // State voor de zoektekst
     const [search, setSearch] = useState('')
-
-    // Geselecteerde film bijhouden
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null)
 
-    // Filter films op basis van de titel
-    const filteredMovies = mockMovies.filter((movie) =>
-        movie.title.toLowerCase().includes(search.toLowerCase())
-    )
+    const [movies, setMovies] = useState<Movie[]>([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+
+    const filteredMovies = movies.filter((movie) =>
+        movie.title.toLowerCase().includes(search.toLowerCase()))
+
+    useEffect(() => {
+        async function loadMovies() {
+            try {
+                const data = await fetchMovies()
+                setMovies(data)
+            } catch {
+                setError('Kon de films niet ophalen. Draait de backend?.')
+            } finally {
+                setLoading(false)
+            }
+        }
+        loadMovies()
+    }, [])
+
+    if (loading) {
+        return <p className="message">Films laden...</p>
+    }
+    if (error) {
+        return <p className="message message-error">{error}</p>
+    }
 
     return (
         <main className="app">

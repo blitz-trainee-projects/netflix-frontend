@@ -1,8 +1,5 @@
-import {useEffect, useState} from 'react'
 import { MovieCard } from './MovieCard'
 import type { Movie } from '../types/movie'
-
-//import { fetchMovies } from '../api/movieApi'
 
 // Altijd EEN props-object doorgeven aan een component
 interface MovieListProps {
@@ -16,42 +13,10 @@ export function MovieList({
                               selectedMovie,
                               onSelect
                           }: MovieListProps) {
-    const [movies, setMovies] = useState<Movie[]>([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
-
-    // Geselecteerde film // Vind eigenlijk logischer hier -> vraag waarom opdracht het niet wil
-    // const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null)
-
-    // useEffect met een lege lijst [] draait één keer, nadat het component op het scherm staat.
-    useEffect(() => {
-        async function loadMovies() {
-            try {
-                //const data = await fetchMovies() //moet nog gemaakt worden in movieApi
-                //setMovies(data)
-                setMovies(initialMovies)
-            } catch {
-                setError('Kon de films niet ophalen.')
-            } finally {
-                setLoading(false)
-            }
-        }
-
-        loadMovies()
-    }, [initialMovies])     //was eerst },[]  // [initialMovies] beetje raar, wat is het HIER
-
-    if (loading) {
-        return <p className="message">Films laden...</p>
-    }
-
-    if (error) {
-        return <p className="message message-error">{error}</p>
-    }
-
     return (
         <div className="card-grid">
             {/* Bij een lijst geef je elk element een unieke key, zodat React ze uit elkaar houdt. */}
-            {movies.map((movie) => (
+            {initialMovies.map((movie) => (
                 <MovieCard
                     key={movie.id}
                     movie={movie}
