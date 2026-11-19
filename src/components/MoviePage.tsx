@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react'
 import { MovieDetail } from './MovieDetail'
 import type { Movie } from '../types/movie'
 import { fetchMovies } from "../api/movieAPI.ts";
-
-//import { MovieCard } from "./MovieCard.tsx";
+import { MovieForm } from './MovieForm'
 
 export function MoviesPage() {
     const [search, setSearch] = useState('')
@@ -31,12 +30,17 @@ export function MoviesPage() {
         loadMovies()
     }, [])
 
+    // Nieuwe film toevoegen aan de lijst
+    function handleCreated(newMovie: Movie) {
+        setMovies([...movies, newMovie])
+    }
+
     if (loading) {
         return <p className="message">Films laden...</p>
     }
     if (error) {
         return <p className="message message-error">{error}</p>
-    }
+    }  //betekent dit dat het elke keer runt?
 
     return (
         <main className="app">
@@ -63,8 +67,15 @@ export function MoviesPage() {
                 {selectedMovie && (     //wat hier precies mee bedoeld?
                     <MovieDetail movie={selectedMovie} />
                 )}
-
             </section>
+
+            {/* Film toevoegen */}
+            <section className="section">
+                <h2 className="section-title">Film toevoegen</h2>
+
+                <MovieForm onCreated={handleCreated} />
+            </section>
+
         </main>
     )
 }

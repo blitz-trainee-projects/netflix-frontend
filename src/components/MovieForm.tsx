@@ -14,8 +14,14 @@ export function MovieForm({ onCreated }: MovieFormProps) {
     const [duration, setDuration] = useState('')
     const [age, setAge] = useState('0')
 
+    const [error, setError] = useState('')
+    const [saving, setSaving] = useState(false)
+
     async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
         event.preventDefault()
+
+        setError('')
+        setSaving(true)
 
         const newMovie: MovieCreate = {
             title: title,
@@ -25,15 +31,23 @@ export function MovieForm({ onCreated }: MovieFormProps) {
             minimum_age: Number(age)
         }
 
-        const createdMovie = await createMovie(newMovie)
+        try {
+            const createdMovie = await createMovie(newMovie)
+            onCreated(createdMovie)
 
-        onCreated(createdMovie)
+            //Film wordt gemaakt met lege velden, daarna ingevuld
+            setTitle('')
+            setDescription('')
+            setYear('')
+            setDuration('')
+            setAge('0')
 
-        setTitle('')
-        setDescription('')
-        setYear('')
-        setDuration('')
-        setAge('0')
+        } catch (err) {
+            setError('Opslaan mislukt')
+
+        } finally {
+            setSaving(false)
+        }
     }
 
     return (
@@ -95,7 +109,13 @@ export function MovieForm({ onCreated }: MovieFormProps) {
                 </select>
             </div>
 
-            <button type="submit">Film opslaan</button>
+            {error && (
+                <p className="message-error">{error}</p>
+            )}
+
+            <button type="submit" disabled={saving}>
+                {saving ? 'Opslaan...' : 'Film opslaan'}
+            </button>
 
         </form>
     )
